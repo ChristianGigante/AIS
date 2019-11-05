@@ -1,2 +1,2 @@
-# AIS
-Assigment in Architecture Information System
+# GroceryListPage
+WebDev3_Activity_By_Pair
