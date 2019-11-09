@@ -66,10 +66,25 @@
 
     <div class="container" style="display:inline;">
         <div id="showTable">
-            <br><br>
+            <h1 class="text-center">My Iventory</h1>
+            <!-- BTNaddItem -->
             <button id="add" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#myModal">ADD
                 ITEM</button>
+
+            <!-- inputField -->
             <br><br>
+            <!-- <div class="form-group mx-sm-3 mb-2" style="width: 300px;">
+                <input id="searchItem" type="text" class="form-control" placeholder="Search Item..,">
+                <button id="search" class="btn btn-info ">Search</button>
+            </div> -->
+               <div class="input-group mb-3" style="width: 300px;">
+                <input id="searchItem" type="text" class="form-control" placeholder="Search Item..,">
+                <div class="input-group-append">
+                  <span id="search" class="input-group-text btn-info" >Search</span>
+                </div>
+              </div>
+
+            <br>
             <table class="table text-center table-hover">
                 <thead class="thead thead-light">
                     <th>Item</th>
@@ -246,9 +261,6 @@
 
             })
 
-
-
-
             //update Item function
             function updateItem(id) {
                 var item = $('input[name="itemUpdate"]');
@@ -297,6 +309,26 @@
                     }
                 })
             }
+
+            //searchModule
+            $("#search").click(function () {
+                $('tbody').empty();
+                let search = $('#searchItem').val().toLowerCase();
+                console.log("searching " + search)
+                $.ajax({
+                    url: "item/retrieveMany/" + search + "",
+                    crossDomain: true,
+                    type: "GET",
+                    success: function (data) {
+                        data.forEach(item => {
+                            addRow(item);
+                        });
+                    },
+                    error: function (e) {
+                        console.log(e)
+                    }
+                })
+            })
 
         });
     </script>

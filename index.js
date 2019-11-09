@@ -26,42 +26,49 @@ mongoose.Promise = global.Promise;
 
 // Connecting to the database
 mongoose.connect(dbConfig, { useNewUrlParser: true, useUnifiedTopology: true }
-  ).then(() => {
-    console.log("Successfully connected to the database");    
+).then(() => {
+  console.log("Successfully connected to the database");
 }).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
+  console.log('Could not connect to the database. Exiting now...', err);
+  process.exit();
 });
 
 //adding new Item
-app.post('/item/create', function (req,res) {
-  item.create(req,res);
+app.post('/item/create', function (req, res) {
+  item.create(req, res);
 });
 
 //retrieve all Items in DB
-app.get('/item/retrieve/all', function (req,res) {
-  item.findAll(req,res);
+app.get('/item/retrieve/all', function (req, res) {
+  item.findAll(req, res);
 })
 
 ///item/retrieve/:id - GET
-app.get('/item/retrieve/:id', function (req,res) {
+app.get('/item/retrieve/:id', function (req, res) {
   //console.log(req.params.id)
   let id = req.params.id;
-  item.findOne(req,res,id);
+  item.findOne(req, res, id);
+})
+
+///item/retrieve/:id - GET
+app.get('/item/retrieveMany/:id', function (req, res) {
+  console.log(req.params.id)
+  let id = req.params.id;
+  item.findMany(req, res, id);
 })
 
 //update an item
 //item/update - POST
-app.put('/item/update/:id',function (req,res) {
+app.put('/item/update/:id', function (req, res) {
   let id = req.params.id;
-  item.update(req,res,id);
+  item.update(req, res, id);
 })
 
 //remove an item
 //item/delete - DELETE
-app.delete('/item/delete/:id', function (req,res) {
+app.delete('/item/delete/:id', function (req, res) {
   let id = req.params.id;
-  item.delete(req,res,id);
+  item.delete(req, res, id);
 })
 
 // listen for requests
