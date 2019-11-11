@@ -70,6 +70,9 @@
             <!-- BTNaddItem -->
             <button id="add" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#myModal">ADD
                 ITEM</button>
+            <button class="btn btn-warning btn-lg btnRetrieveAllData" style="float:right; margin: 0 50px 0 20px;">All
+                Item</button>
+
 
             <!-- inputField -->
             <br><br>
@@ -77,12 +80,12 @@
                 <input id="searchItem" type="text" class="form-control" placeholder="Search Item..,">
                 <button id="search" class="btn btn-info ">Search</button>
             </div> -->
-               <div class="input-group mb-3" style="width: 300px;">
+            <div class="input-group mb-3" style="width: 300px;">
                 <input id="searchItem" type="text" class="form-control" placeholder="Search Item..,">
                 <div class="input-group-append">
-                  <span id="search" class="input-group-text btn-info" >Search</span>
+                    <span id="search" class="input-group-text btn-info">Search</span>
                 </div>
-              </div>
+            </div>
 
             <br>
             <table class="table text-center table-hover">
@@ -123,6 +126,10 @@
             //invoking retrieveAllData function
             retrieveAllData();
 
+            $(".btnRetrieveAllData").on('click', function () {
+                // $('tbody').empty();
+                retrieveAllData();
+            })
             //click add button
             $("#add").click(function (e) {
                 e.preventDefault();
@@ -320,6 +327,7 @@
                     crossDomain: true,
                     type: "GET",
                     success: function (data) {
+                        console.log(data)
                         data.forEach(item => {
                             addRow(item);
                         });
@@ -329,6 +337,7 @@
                     }
                 })
             })
+
 
         });
     </script>

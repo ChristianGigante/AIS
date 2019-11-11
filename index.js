@@ -1,4 +1,4 @@
-const port = 3000;
+const port = 8080;
 const express = require('express');
 const bodyParser = require('body-parser');
 // create express app
@@ -52,7 +52,7 @@ app.get('/item/retrieve/:id', function (req, res) {
 
 ///item/retrieve/:id - GET
 app.get('/item/retrieveMany/:id', function (req, res) {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   let id = req.params.id;
   item.findMany(req, res, id);
 })

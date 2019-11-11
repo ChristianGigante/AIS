@@ -63,23 +63,23 @@ exports.findOne = (req, res, id) => {
         });
 };
 // Find a match item with a itemId
-exports.findMany = (req, res, id) => {
-    Item.find({item:id})
+exports.findMany = (req, res, name) => {
+    Item.find({item:name})
         .then(items => {
             if (!items) {
                 return res.status(404).send({
-                    message: "Item not found with id " + id
+                    message: "Item not found with name " + name
                 });
             }
             res.status(200).send(items);
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "Item not found with id " + id
+                    message: "Item not found with name " + name
                 });
             }
             return res.status(500).send({
-                message: "Error retrieving item with id " + id
+                message: "Error retrieving item with name " + name
             });
         });
 };
