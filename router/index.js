@@ -12,7 +12,9 @@ routes.route('/createItem').post((req, res) => {
 routes.route('/retrieveItems').post((req, res) => {
     mainController.retrieveAllItems(req, res);
 })
-
+routes.route('/retrieveItem/:id').post((req, res) => {
+    mainController.retrieveOneItem(req, res);
+})
 
 routes.route('/deleteItems').post((req, res) => {
     mainController.deleteAllItems(req, res);

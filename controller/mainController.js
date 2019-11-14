@@ -13,8 +13,11 @@ let retrieveAllItems = (req, res) => {
     modules.retrieveItem.retrieveAll(req, res);
 }
 
+let retrieveOneItem = (req, res) => {
+    modules.retrieveItem.retrieveOne(req, res);
+}
 
 let deleteAllItems = (req, res) => {
     modules.deleteItem.deleteAllItems(req, res);
 }
-module.exports = { createItem, retrieveAllItems, deleteAllItems }
+module.exports = { createItem, retrieveAllItems, retrieveOneItem, deleteAllItems }
