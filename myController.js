@@ -1,4 +1,7 @@
 const Item = require('./model.js');
+//default response message
+
+var response = { error: false, success: false, data: null }
 
 // Create and Save a newItem
 module.exports.create = (req, res) => {
@@ -64,7 +67,7 @@ exports.findOne = (req, res, id) => {
 };
 // Find a match item with a itemId
 exports.findMany = (req, res, name) => {
-    Item.find({item:name})
+    Item.find({ item: name })
         .then(items => {
             if (!items) {
                 return res.status(404).send({
