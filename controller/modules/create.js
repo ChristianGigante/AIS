@@ -3,8 +3,8 @@ var response = { error: false, success: false, message: null, data: null }
 let createItem = (req, res) => {
 
     // Validate request
-    if (!req.body.name) {
-        response.message = "Item name can not be empty"
+    if (!req.body) {
+        response.message = "Item filleds can not be empty"
     }
 
     let name = req.body.name;

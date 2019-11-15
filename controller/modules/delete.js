@@ -1,8 +1,8 @@
 let models = require('../../model/item');
 let response = { error: false, success: false };
 
-let deleteAllItems = (req, res) => {
-    models.Item.deleteMany()
+let deleteOneItem = (req, res) => {
+    models.Item.deleteOne({ name: req.params.id })//deleteOne or deleteMany
         .then(data => {
             response.success = true
             response.error = false
@@ -18,4 +18,4 @@ let deleteAllItems = (req, res) => {
     res.send(response);
 }
 
-module.exports = { deleteAllItems }
+module.exports = { deleteOneItem }

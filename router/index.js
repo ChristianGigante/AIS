@@ -16,8 +16,12 @@ routes.route('/retrieveItem/:id').post((req, res) => {
     mainController.retrieveOneItem(req, res);
 })
 
-routes.route('/deleteItems').post((req, res) => {
-    mainController.deleteAllItems(req, res);
+routes.route('/updateItem/:id').post((req, res) => {
+    mainController.updateOneItem(req, res);
+})
+
+routes.route('/deleteItem/:id').post((req, res) => {
+    mainController.deleteOneItem(req, res);
 })
 
 module.exports = routes

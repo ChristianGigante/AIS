@@ -34,23 +34,24 @@ let retrieveAll = (req, res) => {
 
 let retrieveOne = (req, res) => {
     let id = req.params.id
-    return new Promise((resolve, reject) => {
+    // return new Promise((resolve, reject) => {
         models.Item.find({ _id: id }
-            // , (err, data) => {
-            //     if (err) {
-            //         response.status = 404
-            //         response.success = true
-            //         response.data = err
-            //         response.message = "No Document found!"
-            //     } else {
-            //         response.status = 200
-            //         response.success = true
-            //         response.data = data
-            //         response.message = "Successfully Retrieved One!"
-            //     }
-            // }
-        ).then(data=>{}).catch(err=>{})
-    })
+            , (err, data) => {
+                if (err) {
+                    response.status = 404
+                    response.success = true
+                    response.data = err
+                    response.message = "No Document found!"
+                } else {
+                    response.status = 200
+                    response.success = true
+                    response.data = data
+                    response.message = "Successfully Retrieved One!"
+                }
+            }
+        )
+        // .then(data=>{}).catch(err=>{})
+    // })
 
         // .then(
         //     data => {
