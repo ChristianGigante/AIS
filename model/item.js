@@ -6,7 +6,8 @@ var Schema = mongoose.Schema;
 var itemSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   quantity: {
     type: Number,
@@ -19,11 +20,11 @@ var itemSchema = new Schema({
     max: 3,
     required: true
   }
-},{
-    collection:"items"
-});
+}, {
+    collection: "items"
+  });
 
 // Compile model from schema
 var Item = mongoose.model('items', itemSchema);
 
-module.exports = {Item}
+module.exports = { Item }

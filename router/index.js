@@ -9,7 +9,7 @@ routes.route('/createItem').post((req, res) => {
     mainController.createItem(req, res);
 })
 
-routes.route('/retrieveItems').post((req, res) => {
+routes.route('/retrieveItems').get((req, res) => {
     mainController.retrieveAllItems(req, res);
 })
 routes.route('/retrieveItem/:id').post((req, res) => {
@@ -20,7 +20,7 @@ routes.route('/updateItem/:id').post((req, res) => {
     mainController.updateOneItem(req, res);
 })
 
-routes.route('/deleteItem/:id').post((req, res) => {
+routes.route('/deleteItem/:id').delete((req, res) => {
     mainController.deleteOneItem(req, res);
 })
 

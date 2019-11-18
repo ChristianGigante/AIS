@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const router = require('./router')
+const path = require('path');
 
 //DBConfig
 const mongoose = require("mongoose");
@@ -27,6 +28,11 @@ mongoose.connect(dbConfig, {
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true, limit: "20mb" }));
 app.use(bodyParser.json({ limit: "20mb" }));
+
+app.all('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'view/index.html'));
+  });
+
 
 app.use("/ais", router)
 
