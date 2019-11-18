@@ -51,10 +51,10 @@ app.get('/item/retrieve/:id', function (req, res) {
 })
 
 ///item/retrieve/:id - GET
-app.get('/item/retrieveMany/:id', function (req, res) {
-  // console.log(req.params.id)
-  let id = req.params.id;
-  item.findMany(req, res, id);
+app.get('/item/retrieveMany/:name', function (req, res) {
+  // console.log(req.params.name)
+  let name = req.params.name;
+  item.findMany(req, res, name);
 })
 
 //update an item

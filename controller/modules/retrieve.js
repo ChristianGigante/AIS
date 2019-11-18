@@ -33,9 +33,11 @@ let retrieveAll = (req, res) => {
 
 
 let retrieveOne = (req, res) => {
+    console.log(req.params.id);
+    
     let id = req.params.id
     // return new Promise((resolve, reject) => {
-        models.Item.find({ _id: id }
+        models.Item.findOne({ _id: id }
             , (err, data) => {
                 if (err) {
                     response.status = 404

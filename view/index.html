@@ -130,6 +130,40 @@
                 ).appendTo($('tbody'));
             }
 
+            //remove Item function
+            function deleteItem(id) {
+                $.ajax({
+                    url: "/ais/deleteItem/" + id + "",
+                    crossDomain: true,
+                    type: "DELETE",
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (e) {
+                        console.log(e)
+                    }
+                });
+            };
+
+
+            //retrieve one item function
+            function retrieveOneItem(id) {
+                $.ajax({
+                    url: "/ais/retrieveOneItem/" + id + "",
+                    crossDomain: true,
+                    type: "POST",
+                    success: function (data) { 
+                        console.log(data.data)                                              
+                        $('input[name="itemUpdate"]').val(data.data.name);
+                        $('input[name="quantityUpdate"]').val(data.data.quantity);
+                        $('input[name="priorityUpdate"]').val(data.data.priority);
+                    },
+                    error: function (e) {
+                        console.log(e)
+                    }
+                })
+            }
+
             //retrieveAllData Function
             function retrieveAllData() {
                 $.ajax({
@@ -232,22 +266,6 @@
                 deleteItem($(this).parent().parent().parent().attr("id"));
             });
 
-            //remove Item function
-            function deleteItem(id) {
-                $.ajax({
-                    url: "/ais/deleteItem/" + id + "",
-                    crossDomain: true,
-                    type: "DELETE",
-                    success: function (data) {
-                        console.log(data);
-                    },
-                    error: function (e) {
-                        console.log(e)
-                    }
-                });
-            };
-
-
             //update Item on Tbl
             var updateId;
             $(document).on("click", ".edit", function () {
@@ -290,22 +308,26 @@
                 $("#showTable").show();
             })
 
-            //retrieve one item function
-            function retrieveOneItem(id) {
+            //searchModule
+            $("#search").click(function () {
+                $('tbody').empty();
+                let search = $('#searchItem').val().toLowerCase();
+                console.log("searching " + search)
                 $.ajax({
-                    url: "/ais/retrieveItem/" + id + "",
+                    url: "item/retrieveMany/" + search + "",
                     crossDomain: true,
-                    type: "POST",
+                    type: "GET",
                     success: function (data) {
-                        $('input[name="itemUpdate"]').val(data.item);
-                        $('input[name="quantityUpdate"]').val(data.quantity);
-                        $('input[name="priorityUpdate"]').val(data.priority);
+                        console.log(data)
+                        data.forEach(item => {
+                            addRow(item);
+                        });
                     },
                     error: function (e) {
                         console.log(e)
                     }
                 })
-            }
+            })
 
             //end
         })
