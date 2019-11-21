@@ -12,18 +12,14 @@ const dbConfig = "mongodb://localhost:27017/dbShop";
 
 mongoose.Promise = global.Promise;
 console.log("Connecting to the Server..,");
-mongoose.connect(dbConfig, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-}, (err, data) => {
-    if (err) {
-        console.log("error : " + err);
-    } else {
-        console.log("MongoDB is connected!");
-    }
+mongoose.connect(dbConfig, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true }
+).then(() => {
+    console.log("Successfully connected to the database..,");
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
 });
+
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true, limit: "20mb" }));
@@ -31,7 +27,7 @@ app.use(bodyParser.json({ limit: "20mb" }));
 
 app.all('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'view/index.html'));
-  });
+});
 
 
 app.use("/ais", router)
