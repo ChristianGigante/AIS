@@ -33,8 +33,6 @@ let retrieveAll = (req, res) => {
 
 
 let retrieveOne = (req, res) => {
-    console.log(req.params.id);
-    
     let id = req.params.id
     // return new Promise((resolve, reject) => {
         models.Item.findOne({ _id: id }

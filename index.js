@@ -23,11 +23,11 @@ app.all('/', function (req, res) {
 const dbConfig = 'mongodb://127.0.0.1:27017/test';
 
 mongoose.Promise = global.Promise;
+console.log("Connecting to the database..,");
 
-// Connecting to the database
-mongoose.connect(dbConfig, { useNewUrlParser: true, useUnifiedTopology: true }
+mongoose.connect(dbConfig, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true }
 ).then(() => {
-  console.log("Successfully connected to the database");
+  console.log("Successfully connected to the database..,");
 }).catch(err => {
   console.log('Could not connect to the database. Exiting now...', err);
   process.exit();
@@ -45,14 +45,12 @@ app.get('/item/retrieve/all', function (req, res) {
 
 ///item/retrieve/:id - GET
 app.get('/item/retrieve/:id', function (req, res) {
-  //console.log(req.params.id)
   let id = req.params.id;
   item.findOne(req, res, id);
 })
 
 ///item/retrieve/:id - GET
 app.get('/item/retrieveMany/:name', function (req, res) {
-  // console.log(req.params.name)
   let name = req.params.name;
   item.findMany(req, res, name);
 })
