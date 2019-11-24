@@ -303,6 +303,7 @@
 
             $(document).on("click", "#updateItem", function () {
                 updateItem(updateId);
+                $('tbody').empty();
                 retrieveAllData();
                 $("#updateForm").hide();
                 $("#showTable").show();
